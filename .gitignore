@@ -1,0 +1,23 @@
+# 私有/敏感文件
+PRIVATE-NOTES.local.md
+.env
+.env.*
+!.env.example
+
+# 后端构建与运行数据
+btr-platform/backend/target/
+btr-platform/backend/data/
+btr-platform/backend/uploads/
+*.log
+
+# 前端依赖与构建产物
+btr-platform/frontend/node_modules/
+btr-platform/frontend/dist/
+btr-platform/frontend/.vite/
+
+# 临时文件
+upload-test.txt
+*.out
+*.zip
+*.tgz
+.DS_Store

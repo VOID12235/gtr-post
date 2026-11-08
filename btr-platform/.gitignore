@@ -1,0 +1,15 @@
+.idea/
+*.iml
+target/
+data/
+logs/
+*.log
+.env
+.env.local
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+*.zip
+*.out
+tenants.json
+.DS_Store

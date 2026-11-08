@@ -1,0 +1,55 @@
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: btr-mysql
+    environment:
+      MYSQL_DATABASE: btr
+      MYSQL_USER: btr
+      MYSQL_PASSWORD: ${DB_PASSWORD:-btr_pass}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root_pass}
+      TZ: Asia/Shanghai
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-ubtr", "-p${DB_PASSWORD:-btr_pass}"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  backend:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+    container_name: btr-backend
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      SERVER_PORT: 8080
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_NAME: btr
+      DB_USER: btr
+      DB_PASSWORD: ${DB_PASSWORD:-btr_pass}
+      JWT_SECRET: ${JWT_SECRET:-change-me-change-me-change-me-32-bytes}
+      ADMIN_ACCOUNT: ${ADMIN_ACCOUNT:-admin}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-admin123}
+      TZ: Asia/Shanghai
+    ports:
+      - "${BACKEND_PORT:-8080}:8080"
+
+  frontend:
+    build:
+      context: ../frontend
+      dockerfile: Dockerfile
+    container_name: btr-frontend
+    depends_on:
+      - backend
+    ports:
+      - "${FRONTEND_PORT:-8088}:80"
+
+volumes:
+  mysql-data:

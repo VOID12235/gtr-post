@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:btr;MODE=MySQL;DATABASE_TO_LOWER=TRUE;DB_CLOSE_DELAY=-1
+    username: sa
+    password: ""
+    driver-class-name: org.h2.Driver
+  flyway:
+    enabled: true
+    locations: classpath:db/migration/h2
+  h2:
+    console:
+      enabled: false
+
+btr:
+  jwt:
+    secret: test-secret-test-secret-test-secret-123
+  captcha:
+    enabled: false
+  bootstrap:
+    tenant-code: demo
+    tenant-name: 示例科技
+    admin-account: admin
+    admin-password: admin123
+    admin-nickname: 平台管理员

@@ -1,0 +1,42 @@
+{
+  "name": "BTR 社会赛事平台",
+  "short_name": "BTR",
+  "description": "企业、协会、政府/园区、品牌的社会赛事基础设施：报名、作品、评审、赞助、证书。",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#050505",
+  "theme_color": "#050505",
+  "lang": "zh-CN",
+  "icons": [
+    {
+      "src": "/brand/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/brand/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/brand/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "全部赛事",
+      "url": "/contests"
+    },
+    {
+      "name": "证书验真",
+      "url": "/verify"
+    }
+  ]
+}
